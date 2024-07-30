@@ -1,5 +1,6 @@
 import { execSync } from 'child_process';
 import * as path from 'path';
+import * as fs from 'fs';
 const moment = require('moment')
 
 interface BackupOptions {
@@ -16,6 +17,11 @@ const createDatabaseBackups = (options: BackupOptions): void => {
     const backupPath1 = path.join(directory, `${databaseName1}-after-${step}_${timestamp}.bak`);
     // const backupPath2 = path.join(directory, `${databaseName2}-after-${step}_${timestamp}.bak`);
   
+    // Ensure the backup directory exists
+    if (!fs.existsSync(directory)) {
+      fs.mkdirSync(directory, { recursive: true });
+    }
+
     const backupCommand1 = `sqlcmd -S ${server} -Q "BACKUP DATABASE [${databaseName1}] TO DISK = '${backupPath1}' WITH FORMAT, INIT, NAME = '${databaseName1} Full Backup', SKIP, NOREWIND, NOUNLOAD, STATS = 10"`;
     // const backupCommand2 = `sqlcmd -Q "BACKUP DATABASE [${databaseName2}] TO DISK = '${backupPath2}' WITH FORMAT, INIT, NAME = '${databaseName2} Full Backup', SKIP, NOREWIND, NOUNLOAD, STATS = 10"`;
   
