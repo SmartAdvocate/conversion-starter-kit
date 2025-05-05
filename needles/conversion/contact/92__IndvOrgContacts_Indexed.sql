@@ -4,7 +4,7 @@ order: 92
 description:
 ---*/
 
-use VanceLawFirm_SA
+use [SA]
 go
 
 if exists (

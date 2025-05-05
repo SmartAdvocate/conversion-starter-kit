@@ -1,5 +1,5 @@
 /*
-SELECT * FROM Skolrood_Needles..s
+SELECT * FROM [Needles]..s
 - update source_id on both sma_mst_users and sma_mst_indvcontacts
 
 because users were created manually in the implementation system,
@@ -29,8 +29,8 @@ go
 --set source_id = (
 --		select top 1
 --			s.staff_code
---		from Skolrood_Needles..staff s
---		join [Skolrood_SA]..sma_MST_IndvContacts indv
+--		from [Needles]..staff s
+--		join [SA]..sma_MST_IndvContacts indv
 --			on s.full_name = indv.cinsFirstName + ' ' + indv.cinsLastName
 --		where indv.cinnContactID = sma_MST_Users.usrnContactID
 --	),
@@ -81,12 +81,12 @@ join #ContactSourceMap map
 -- Step 4: Clean up the temporary table
 drop table #ContactSourceMap;
 
---SELECT smu.usrsLoginID, smu.source_id FROM Skolrood_SA..sma_MST_Users smu order by smu.usrsLoginID
+--SELECT smu.usrsLoginID, smu.source_id FROM [SA]..sma_MST_Users smu order by smu.usrsLoginID
 
 --select s.staff_code, u.*
---	FROM [Skolrood_SA]..sma_mst_users u
---		JOIN [Skolrood_SA]..sma_MST_IndvContacts smic
+--	FROM [SA]..sma_mst_users u
+--		JOIN [SA]..sma_MST_IndvContacts smic
 --			ON smic.cinnContactID = u.usrnContactID
---		LEFT JOIN Skolrood_Needles..staff s
+--		LEFT JOIN [Needles]..staff s
 --			ON s.full_name = smic.cinsFirstName + ' ' + smic.cinsLastName
 

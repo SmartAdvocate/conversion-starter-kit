@@ -1,4 +1,4 @@
-use KurtYoung_SA
+use [SA]
 go
 
 --[sma_TRN_PlaintiffAttorney]

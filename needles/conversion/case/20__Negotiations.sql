@@ -191,8 +191,8 @@ insert into [sma_TRN_Negotiations]
 		null		   as [source_id],
 		'needles'	   as [source_db],
 		'negotiation'  as [source_ref]
-	from [VanceLawFirm_Needles].[dbo].[negotiation] NEG
-	left join [VanceLawFirm_Needles].[dbo].[insurance_Indexed] INS
+	from [Needles].[dbo].[negotiation] NEG
+	left join [Needles].[dbo].[insurance_Indexed] INS
 		on INS.insurance_id = NEG.insurance_id
 	join [sma_TRN_cases] CAS
 		on CAS.cassCaseNumber = CONVERT(VARCHAR, NEG.case_id)

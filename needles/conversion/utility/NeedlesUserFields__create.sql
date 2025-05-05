@@ -66,7 +66,7 @@ insert into NeedlesUserFields
 			else field_Type
 		end
 	--Select *
-	from Skolrood_Needles..[user_case_fields]
+	from [Needles]..[user_case_fields]
 
 
 -----------------------------------------------------
@@ -92,8 +92,8 @@ select
 	IDENTITY(INT, 1, 1) as Number,
 	gd.code
 into #values
-from Skolrood_Needles..mini_general_dir gd
-join Skolrood_Needles..mini_dir_list dl
+from [Needles]..mini_general_dir gd
+join [Needles]..mini_dir_list dl
 	on gd.num_assigned = dl.dir_key
 where
 	dir_name = @miniDir
@@ -137,7 +137,7 @@ deallocate userFields_cursor;
 
 /*
 select dl.dir_name, item_id, gd.code
-from Skolrood_Needles..mini_general_dir gd
-JOIN Skolrood_Needles..mini_dir_list dl on gd.num_assigned = dl.dir_key
+from [Needles]..mini_general_dir gd
+JOIN [Needles]..mini_dir_list dl on gd.num_assigned = dl.dir_key
 where dir_name = 'Living with'  --(Field_title)
 */

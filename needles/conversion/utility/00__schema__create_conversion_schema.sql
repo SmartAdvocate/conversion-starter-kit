@@ -1,4 +1,4 @@
-use Skolrood_SA
+use [SA]
 go
 
 IF NOT EXISTS (SELECT * FROM sys.schemas WHERE name = N'conversion')

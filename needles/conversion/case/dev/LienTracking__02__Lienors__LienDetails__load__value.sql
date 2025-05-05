@@ -1,4 +1,4 @@
-use Skolrood_SA
+use [SA]
 go
 
 /* ------------------------------------------------------------------------------
@@ -13,8 +13,8 @@ insert into sma_MST_LienType
 	select distinct
 		'CONVERSION',
 		VC.[description]
-	from [Skolrood_Needles].[dbo].[value] V
-	inner join [Skolrood_Needles].[dbo].[value_code] VC
+	from [Needles].[dbo].[value] V
+	inner join [Needles].[dbo].[value_code] VC
 		on VC.code = V.code
 	where ISNULL(V.code, '') in (
 			select
@@ -64,7 +64,7 @@ insert into [sma_TRN_Lienors]
 			where lntsDscrptn = (
 					select
 						[description]
-					from [Skolrood_Needles].[dbo].[value_code]
+					from [Needles].[dbo].[value_code]
 					where [code] = V.code
 				)
 		)						 as [lnrnLienorTypeID],
@@ -89,7 +89,7 @@ insert into [sma_TRN_Lienors]
 		null					 as [source_id],
 		null					 as [source_db],
 		null					 as [source_ref]
-	from [Skolrood_Needles].[dbo].[value_Indexed] V
+	from [Needles].[dbo].[value_Indexed] V
 	inner join [value_tab_Lien_Helper] MAP
 		on MAP.case_id = V.case_id
 			and MAP.value_id = V.value_id

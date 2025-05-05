@@ -41,7 +41,7 @@ insert into [sma_TRN_CriticalComments]
 		null		   as [ctcddtmodified],
 		null		   as [ctcnlevelno],
 		null		   as [ctcscommenttype]
-	from [VanceLawFirm_Needles].[dbo].[cases_Indexed] c
+	from [Needles].[dbo].[cases_Indexed] c
 	join [sma_trn_cases] cas
 		on cas.cassCaseNumber = CONVERT(VARCHAR, c.casenum)
 	where

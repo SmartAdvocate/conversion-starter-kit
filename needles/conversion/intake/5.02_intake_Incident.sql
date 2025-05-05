@@ -1,4 +1,4 @@
-use KurtYoung_SA
+use [SA]
 GO
 
 /*
@@ -50,7 +50,7 @@ SELECT
 	,getdate()						as [DtCreated]
 	,null							as [ModifyUserID]
 	,null							as [DtModified]
-FROM KurtYoung_Needles.[dbo].case_intake N
+FROM [Needles].[dbo].case_intake N
 JOIN [sma_TRN_Cases] C on C.saga = N.ROW_ID
 where ISNULL(N.synopsis, '') <> '' OR ISNULL(N.date_of_incident, '') <> ''
                 

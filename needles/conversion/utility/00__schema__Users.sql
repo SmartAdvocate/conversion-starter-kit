@@ -14,7 +14,7 @@ notes:
 	-
 */
 
-use Skolrood_SA
+use [SA]
 go
 
 -- saga
