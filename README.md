@@ -3,14 +3,10 @@ This repository serves as both the single source of truth for conversion scripts
 Scripts are documented in each system directory's respective Readme
 
 ## Quick Start
-Select "use template" in the top right and create a new repository.
-### Use Template
-1. Use Template
-
-
-### Project Setup
+1. Select "use template" in the top right and create a new repository.
 2. Delete folders for non-applicable legacy systems
-3. 
+3. (optional) Instantiate python virtual environment
+
 ```bash
 git clone <repo-url>
 cd <project>              
@@ -19,7 +15,7 @@ python -m venv _venv      # creates python virtual environment for use with sa-c
 pip install -e C:\LocalConv\sa-conversion-utils\  # install sa-conversion-utils
 ```
 
-### Update `'USE'` Directives
+4. Update `'USE'` Directives
 The boilerplate uses the following default database references:
 - `[SA]` to represent the target SA database
 - `[Needles]`- to represent the source Needles database
