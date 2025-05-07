@@ -38,7 +38,7 @@ begin
 				select
 					sms.sttsDescription
 				from sma_MST_States
-				where sttsCode = smo.state_id
+				where sttnStateID = smo.state_id
 			)				  as StateName,
 			smo.PhoneNumber	  as PhoneNumber,
 			'Needles'		  as CaseGroup,
