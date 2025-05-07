@@ -50,5 +50,3 @@ data | | Source data
 logs | | Log files
 
 ## Source System Directories
-litify
-needles
