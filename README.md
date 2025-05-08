@@ -3,9 +3,6 @@ This repository serves as both the single source of truth for conversion scripts
 Scripts are documented in each system directory's respective Readme
 
 ## Quick Start
-> [!NOTE]
-> This guide assumes basic git knowledge
-
 1. Select "use template" in the top right and create a new repository
 2. Create a new repo and [clone it](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) locally
 2. Delete folders for non-applicable legacy systems (e.g. delete /litify if you are not working on a Litify conversion)
@@ -53,5 +50,3 @@ data | | Source data
 logs | | Log files
 
 ## Source System Directories
-litify
-needles
