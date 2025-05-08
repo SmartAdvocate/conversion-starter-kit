@@ -5,12 +5,6 @@ _venv/*
 _trans/*
 !_trans/.gitkeep
 
-# Ignore database backup files
-backups/*
-!backups/.gitkeep
-*.bak
-*.backup
-
 # Python cache files
 **__pycache__/
 lib/__pycache__/
