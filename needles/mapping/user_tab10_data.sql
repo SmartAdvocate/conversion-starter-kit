@@ -1,10 +1,11 @@
 select
 	cfu.[tablename],
+	[caseid] as case_link,
 	cfu.[column_name],
 	[field_title],
 	[field_type],
+	[mini_dir_title],
 	[field_len],
-	[caseid] as case_link,
 	[ValueCount] as count,
 	CFSD.field_value as [Sample Data]
 from CustomFieldUsage CFU
