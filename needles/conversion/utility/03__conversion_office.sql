@@ -36,7 +36,7 @@ begin
 			smo.office_name	  as OfficeName,
 			(
 				select
-					sms.sttsDescription
+					sttsDescription
 				from sma_MST_States
 				where sttnStateID = smo.state_id
 			)				  as StateName,

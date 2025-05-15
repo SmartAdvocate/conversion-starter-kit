@@ -1,4 +1,4 @@
-use VanceLawFirm_SA
+use [SA]
 go
 
 
@@ -133,11 +133,9 @@ insert into [dbo].[sma_TRN_TaskNew]
 		'needles'								 as [source_db],
 		'case_checklist'						 as [source_ref]
 	-- select * 
-	from [VanceLawFirm_Needles]..case_checklist cc
+	from [Needles]..case_checklist cc
 	join sma_trn_Cases cas
 		on cas.cassCaseNumber = CONVERT(VARCHAR, cc.case_id)
-	where
-		cc.case_id = 213710
 --join [VanceLawFirm_Needles]..cases c
 --	on c.casenum = cc.case_id
 
