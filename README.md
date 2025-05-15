@@ -1,5 +1,5 @@
-﻿# SmartAdvocate Conversion Boilerplate
-This repository serves as both the single source of truth for conversion scripts and a project boilerplate that includes all directories that [sa-conversion-utils](https://github.com/dylangetssmart/sa-conversion-utils) expects.
+﻿# SmartAdvocate Conversion Starter Kit
+This repository serves as both the single source of truth for standardized conversion scripts and as a conversion project starter kit that includes all directories expected by [sa-conversion-utils](https://github.com/dylangetssmart/sa-conversion-utils).
 Scripts are documented in each system directory's respective Readme
 
 ## Quick Start
