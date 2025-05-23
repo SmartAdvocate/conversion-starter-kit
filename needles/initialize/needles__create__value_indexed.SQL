@@ -1,18 +1,5 @@
-/* ######################################################################################
-description: Creates an indexed version of needles..value
-
-steps:
-	-
-
-usage_instructions:
-	-
-
-dependencies:
-	- 
-
-notes:
-	-
-#########################################################################################
+/*
+Creates an indexed version of needles..value
 */
 
 USE [Needles]

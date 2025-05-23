@@ -1,18 +1,5 @@
-/* ######################################################################################
-description: Creates an indexed version of needles..counsel
-
-steps:
-	-
-
-usage_instructions:
-	-
-
-dependencies:
-	- 
-
-notes:
-	-
-#########################################################################################
+/*
+Creates an indexed version of needles..counsel
 */
 
 USE [Needles]

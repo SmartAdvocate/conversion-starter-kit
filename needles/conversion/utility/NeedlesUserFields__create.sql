@@ -1,3 +1,7 @@
+/*
+This table is utilized by the UDF scripts
+*/
+
 use [SA]
 go
 

@@ -10,15 +10,9 @@ steps:
 usage_instructions:
 	- update hardcoded values in #TempVariables
 
-dependencies:
-	- 
-
-notes:
-	- 
-#########################################################################################
 */
 
-USE [Needles]
+USE [SA]
 GO
 
 /*
@@ -36,13 +30,13 @@ FROM (
 			M.tablename,
 			m.caseid
 			--ROW_NUMBER() over(partition by F.field_num order by F.field_num ) as rowindex
-		FROM [dbo].[user_case_fields] F
+		FROM [Needles].[dbo].[user_case_fields] F
 		JOIN (
 				select
 					ref_num
 					,'user_case_data' as tablename
 					,'casenum' as caseid
-				from [dbo].[user_case_matter]
+				from [Needles].[dbo].[user_case_matter]
 
 				union
 
@@ -50,7 +44,7 @@ FROM (
 					ref_num
 					,'user_tab_data' as tablename
 					,'case_id' as caseid
-				from [dbo].[user_tab_matter] 
+				from [Needles].[dbo].[user_tab_matter] 
 				
 				union
 
@@ -58,7 +52,7 @@ FROM (
 					ref_num
 					,'user_tab2_data' as tablename
 					,'case_id' as caseid
-				from [dbo].[user_tab2_matter] 
+				from [Needles].[dbo].[user_tab2_matter] 
 				
 				union
 
@@ -66,7 +60,7 @@ FROM (
 					ref_num
 					,'user_tab3_data' as tablename
 					,'case_id' as caseid
-				from [dbo].[user_tab3_matter] 
+				from [Needles].[dbo].[user_tab3_matter] 
 				
 				union
 
@@ -74,7 +68,7 @@ FROM (
 					ref_num
 					,'user_tab4_data' as tablename
 					,'case_id' as caseid
-				from [dbo].[user_tab4_matter] 
+				from [Needles].[dbo].[user_tab4_matter] 
 				
 				union
 
@@ -82,7 +76,7 @@ FROM (
 					ref_num
 					,'user_tab5_data' as tablename
 					,'case_id' as caseid
-				from [dbo].[user_tab5_matter]
+				from [Needles].[dbo].[user_tab5_matter]
 
 				union
 
@@ -90,7 +84,7 @@ FROM (
 					ref_num
 					,'user_tab6_data' as tablename
 					,'case_id' as caseid
-				from [dbo].[user_tab6_matter]
+				from [Needles].[dbo].[user_tab6_matter]
 
 				union
 
@@ -98,7 +92,7 @@ FROM (
 					ref_num
 					,'user_tab7_data' as tablename
 					,'case_id' as caseid
-				from [dbo].[user_tab7_matter]
+				from [Needles].[dbo].[user_tab7_matter]
 			
 				union
 
@@ -106,7 +100,7 @@ FROM (
 					ref_num
 					,'user_tab8_data' as tablename
 					,'case_id' as caseid
-				from [dbo].[user_tab8_matter]
+				from [Needles].[dbo].[user_tab8_matter]
 
 				union
 
@@ -114,7 +108,7 @@ FROM (
 					ref_num
 					,'user_tab9_data' as tablename
 					,'case_id' as caseid
-				from [dbo].[user_tab9_matter]
+				from [Needles].[dbo].[user_tab9_matter]
 
 				union
 
@@ -122,7 +116,7 @@ FROM (
 					ref_num
 					,'user_tab10_data' as tablename
 					,'case_id' as caseid
-				from [dbo].[user_tab10_matter]
+				from [Needles].[dbo].[user_tab10_matter]
 
 				union
 
@@ -130,7 +124,7 @@ FROM (
 					ref_num
 					,'user_insurance_data' as tablename
 					,'casenum' as caseid
-				from [dbo].[user_case_insurance_matter]
+				from [Needles].[dbo].[user_case_insurance_matter]
 
 				union
 				
@@ -138,7 +132,7 @@ FROM (
 					ref_num
 					,'user_party_data' as tablename
 					,'case_id' as caseid
-				from [dbo].[user_party_matter]
+				from [Needles].[dbo].[user_party_matter]
 
 				union
 
@@ -146,7 +140,7 @@ FROM (
 					ref_num
 					,'user_value_data' as tablename
 					,'case_id' as caseid
-				from [dbo].[user_case_value_matter] 
+				from [Needles].[dbo].[user_case_value_matter] 
 			
 				union
 
@@ -154,7 +148,7 @@ FROM (
 					ref_num
 					,'user_counsel_data' as tablename
 					,'casenum' as caseid
-				from [dbo].[user_case_counsel_matter]
+				from [Needles].[dbo].[user_case_counsel_matter]
 			) M on M.ref_num=F.field_num
 	) A-- where A.rowindex=1
 order by

@@ -1,4 +1,4 @@
-USE [Needles]
+USE [SA]
 GO
 
 --drop table CustomFieldUsage_intake
@@ -10,7 +10,7 @@ SELECT DISTINCT
    ,field_type
    ,'case_intake'																																																															  AS tablename
    ,0																																																																		  AS ValueCount INTO CustomFieldUsage_intake
-FROM [dbo].[user_case_intake_matter] m
+FROM [Needles].[dbo].[user_case_intake_matter] m
 WHERE field_type <> 'label'
 
 --CURSOR

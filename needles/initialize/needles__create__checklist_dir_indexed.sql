@@ -1,18 +1,5 @@
-/* ######################################################################################
-description: Creates an indexed version of needles..checklist_dir
-
-steps:
-	-
-
-usage_instructions:
-	-
-
-dependencies:
-	- 
-
-notes:
-	-
-#########################################################################################
+/*
+Creates an indexed version of needles..checklist_dir
 */
 
 USE [Needles]

@@ -1,18 +1,5 @@
-/* ######################################################################################
-description: Creates an indexed version of needles..cases
-
-steps:
-	-
-
-usage_instructions:
-	-
-
-dependencies:
-	- 
-
-notes:
-	-
-#########################################################################################
+/*
+Creates an indexed version of needles..cases
 */
 
 USE [Needles]
