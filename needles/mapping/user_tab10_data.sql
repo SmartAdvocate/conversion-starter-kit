@@ -14,4 +14,5 @@ left join CustomFieldSampleData CFSD
 		and CFU.tablename = CFSD.tablename
 where
 	CFU.tablename = 'user_tab10_data'
+		and ValueCount > 0
 order by CFU.tablename, CFU.field_num
