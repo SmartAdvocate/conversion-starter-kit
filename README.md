@@ -6,15 +6,15 @@ Scripts are documented in each system directory's respective Readme
 1. Select "use template" in the top right and create a new repository
 2. Create a new repo and [clone it](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) locally
 2. Delete folders for non-applicable legacy systems (e.g. delete /litify if you are not working on a Litify conversion)
-3. _(optional)_ Install [sa-conversion-utils](https://github.com/dylangetssmart/sa-conversion-utils)
-    - Instantiate python virtual environment
-    - activate virtual environment
-    - install sa-conversion-utils
-4. Update SQL scripts
+3. Update SQL scripts
     - Update `'USE'` Directives
       - The boilerplate uses the following default database references:
       - `[SA]` to represent the target SA database
       - `[Needles]`- to represent the source Needles database
+4. _(optional)_ Install [sa-conversion-utils](https://github.com/dylangetssmart/sa-conversion-utils)
+    - Instantiate python virtual environment
+    - activate virtual environment
+    - install sa-conversion-utils
 
 > [!TIP]
 > Use a bulk replace function (such as VS Code's Replace in Folder)
