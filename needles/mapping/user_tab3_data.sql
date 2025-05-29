@@ -8,8 +8,8 @@ select
 	[field_len],
 	[ValueCount]	 as count,
 	CFSD.field_value as [Sample Data]
-from CustomFieldUsage CFU
-left join CustomFieldSampleData CFSD
+from [Needles]..CustomFieldUsage CFU
+left join [Needles]..CustomFieldSampleData CFSD
 	on CFU.column_name = CFSD.column_name
 		and CFU.tablename = CFSD.tablename
 where

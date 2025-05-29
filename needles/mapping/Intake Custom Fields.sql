@@ -1,4 +1,4 @@
 SELECT
 	*
-FROM CustomFieldUsage_intake
+FROM [Needles]..CustomFieldUsage_intake
 ORDER BY tablename, field_num
