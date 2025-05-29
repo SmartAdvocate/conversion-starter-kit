@@ -12,7 +12,7 @@ usage_instructions:
 
 */
 
-USE [SA]
+USE [Needles]
 GO
 
 /*
@@ -294,8 +294,8 @@ DEALLOCATE customFieldCursor;
      ,[ValueCount]
 	 ,CFSD.field_value AS [Sample Data]
 FROM 
-    CustomFieldUsage CFU
-	LEFT JOIN CustomFieldSampleData CFSD
+    [Needles]..CustomFieldUsage CFU
+	LEFT JOIN [Needles]..CustomFieldSampleData CFSD
 		ON CFU.column_name = CFSD.column_name
 		AND CFU.tablename = CFSD.tablename
 order by CFU.tablename, CFU.field_num
