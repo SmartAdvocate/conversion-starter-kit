@@ -7,8 +7,8 @@ Scripts are documented in each system directory's respective Readme
 1. Select "use template" in the top right and create a new repository
 2. [Clone the repository into your working directory](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)
 ```bash
-cd c:\my\working\directory
-git clone <repo-url> <client-name>
+cd c:\my-conversion-projects
+git clone <repo-url> <client-name> # a folder named <client-name> will be created 
 cd <client-name>
 ```
 3. Delete folders for non-applicable legacy systems (e.g. delete `/litify` if you are not working on a Litify conversion)
