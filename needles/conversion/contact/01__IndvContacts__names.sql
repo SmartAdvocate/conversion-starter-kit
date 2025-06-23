@@ -1,9 +1,3 @@
-/*---
-group: load
-order: 5
-description: Update contact types for attorneys
----*/
-
 use [SA]
 go
 
