@@ -1,4 +1,4 @@
-use JoelBieberSA_Needles
+use [Needles]
 go
 
 truncate table sma_trn_incidents
