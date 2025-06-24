@@ -18,7 +18,7 @@ cd <client-name>
     - install sa-conversion-utils
 ```bash
 python -m venv .venv      # creates python virtual environment ".venv"
-.\_venv\Scripts\activate  # activate virtual environment
+.\.venv\Scripts\activate  # activate virtual environment
 pip install git+https://github.com/dylangetssmart/sa-conversion-utils.git
 ```
 ### Update SQL script database references
