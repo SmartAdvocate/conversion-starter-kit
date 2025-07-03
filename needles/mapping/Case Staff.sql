@@ -1,5 +1,5 @@
 SELECT 'staff_1' AS Label,
-       (SELECT TOP 1 WITH TIES staff_1 FROM [Needles]..cases WHERE staff_1 <> '' GROUP BY staff_1 ORDER BY COUNT(*) DESC) AS [User]
+       (SELECT TOP 1 WITH TIES staff_1 FROM [Needles]..cases WHERE staff_1 <> '' GROUP BY staff_1 ORDER BY COUNT(*) DESC) AS [Most Frequent User]
 UNION ALL
 SELECT 'staff_2',
        (SELECT TOP 1 WITH TIES staff_2 FROM [Needles]..cases WHERE staff_2 <> '' GROUP BY staff_2 ORDER BY COUNT(*) DESC)
