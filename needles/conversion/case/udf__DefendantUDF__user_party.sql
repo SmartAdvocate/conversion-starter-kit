@@ -1,10 +1,10 @@
 /*
-description: Populates PlaintiffUDF with fields from user_party_data
+description: Populates DefendantUDF with fields from user_party_data
 
 steps: >
-  For each field in [user_party_matter] with [party_role] = 'Plaintiff',
+  For each field in [user_party_matter] with [party_role] = 'Defendant',
   this process creates a UDF definition and populates UDF values from [user_party_data].
-   The script uses a persistent mapping table (conversion.FieldTitleMap) to
+  The script uses a persistent mapping table (conversion.FieldTitleMap) to
   map original field titles (e.g., 'D/B/A') to SQL-safe aliases (e.g., 'D_B_A').
 
 dependencies:
@@ -13,7 +13,7 @@ dependencies:
   - needles\conversion\utility\create__CaseTypeMixture.sql
 */
 
-use [SA]
+use [SA];
 go
 
 /* ---------------------------------------------------------------------------
@@ -50,7 +50,7 @@ insert into conversion.FieldTitleMap
 	join PartyRoles R
 		on R.[Needles Roles] = M.party_role
 	where
-		R.[SA Party] = 'Plaintiff'
+		R.[SA Party] = 'Defendant'
 		and F.column_name in (
 			select
 				COLUMN_NAME
@@ -61,10 +61,10 @@ insert into conversion.FieldTitleMap
 
 
 /* ---------------------------------------------------------------------------
-Step 1: Populate PlaintiffUDF via dynamic SQL
+Step 1: Populate DefendantUDF via dynamic SQL
 --------------------------------------------------------------------------- */
-if OBJECT_ID('PlaintiffUDF', 'U') is not null
-	drop table PlaintiffUDF;
+if OBJECT_ID('DefendantUDF', 'U') is not null
+	drop table DefendantUDF;
 
 declare @cols NVARCHAR(MAX);
 declare @sql NVARCHAR(MAX);
@@ -84,7 +84,7 @@ where
 -- Final dynamic SQL
 set @sql = '
 SELECT casnCaseID, casnOrgCaseTypeID, FieldTitle, FieldVal
-INTO PlaintiffUDF
+INTO DefendantUDF
 FROM ( 
     SELECT 
         cas.casnCaseID, 
@@ -108,7 +108,7 @@ if exists (
 		select
 			*
 		from sys.tables
-		where name = 'PlaintiffUDF'
+		where name = 'DefendantUDF'
 			and type = 'U'
 	)
 begin
@@ -129,7 +129,7 @@ begin
 			'C'										   as [udfsUDFCtg],
 			CST.cstnCaseTypeID						   as [udfnRelatedPK],
 			M.field_title							   as [udfsUDFName],
-			'Plaintiff'								   as [udfsScreenName],
+			'Defendant'								   as [udfsScreenName],
 			ucf.UDFType								   as [udfsType],
 			ucf.field_len							   as [udfsLength],
 			1										   as [udfbIsActive],
@@ -148,7 +148,7 @@ begin
 		join (
 			select distinct
 				FieldTitle
-			from PlaintiffUDF
+			from DefendantUDF
 		) vd
 			on vd.FieldTitle = map.alias_field_title
 		join [dbo].[NeedlesUserFields] ucf
@@ -164,7 +164,7 @@ begin
 		left join [sma_MST_UDFDefinition] def
 			on def.[udfnRelatedPK] = CST.cstnCaseTypeID
 				and def.[udfsUDFName] = M.field_title
-				and def.[udfsScreenName] = 'Plaintiff'
+				and def.[udfsScreenName] = 'Defendant'
 				and def.[udfsType] = ucf.UDFType
 				and def.udfnUDFID is null
 		order by M.field_title;
@@ -173,9 +173,9 @@ end
 alter table [sma_MST_UDFDefinition] enable trigger all
 go
 
-/* ------------------------------------------------------------------------------
-Insert UDF Values
-*/ ------------------------------------------------------------------------------
+/* ---------------------------------------------------------------------------
+Step 3: Insert into sma_TRN_UDFValues
+--------------------------------------------------------------------------- */
 alter table sma_TRN_UDFValues disable trigger all
 go
 
@@ -183,7 +183,7 @@ if exists (
 		select
 			*
 		from sys.tables
-		where name = 'PlaintiffUDF'
+		where name = 'DefendantUDF'
 			and type = 'U'
 	)
 begin
@@ -202,28 +202,27 @@ begin
 			[udvnLevelNo]
 		)
 		select
-			def.udfnUDFID		as [udvnUDFID],
-			'Plaintiff'			as [udvsScreenName],
-			'C'					as [udvsUDFCtg],
-			casnCaseID			as [udvnRelatedID],
-			pln.plnnPlaintiffID as [udvnSubRelatedID],
-			udf.FieldVal		as [udvsUDFValue],
-			368					as [udvnRecUserID],
-			GETDATE()			as [udvdDtCreated],
-			null				as [udvnModifyUserID],
-			null				as [udvdDtModified],
-			null				as [udvnLevelNo]
-		--select *
-		from PlaintiffUDF udf
+			def.udfnUDFID	  as [udvnUDFID],
+			'Defendant'		  as [udvsScreenName],
+			'C'				  as [udvsUDFCtg],
+			udf.casnCaseID	  as [udvnRelatedID],
+			d.defnDefendentID as [udvnSubRelatedID],
+			udf.FieldVal	  as [udvsUDFValue],
+			368				  as [udvnRecUserID],
+			GETDATE()		  as [udvdDtCreated],
+			null			  as [udvnModifyUserID],
+			null			  as [udvdDtModified],
+			null			  as [udvnLevelNo]
+		from DefendantUDF udf
 		join conversion.FieldTitleMap map
 			on udf.FieldTitle = map.alias_field_title
 				and map.source_table = 'user_party_data'
-		join sma_TRN_Plaintiff pln
-			on pln.plnnCaseID = udf.casnCaseID
-				and pln.plnbIsPrimary = 1
 		join sma_MST_UDFDefinition def
 			on def.udfnRelatedPK = udf.casnOrgCaseTypeID
 				and def.udfsUDFName = map.field_title
+				and def.udfsScreenName = 'Defendant'
+		join sma_TRN_Defendants d
+			on d.defnCaseID = udf.casnCaseID;
 end
 
 alter table sma_TRN_UDFValues enable trigger all

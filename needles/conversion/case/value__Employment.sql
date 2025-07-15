@@ -3,20 +3,20 @@
 - create special damage records for lost wages
 */
 
-use Skolrood_SA
+use [SA]
 go
 
 
 select
 	*
-from Skolrood_Needles..value v
+from [Needles]..value v
 where
 	code = 'lwg'
 
 
 select
 	*
-from Skolrood_Needles..provider p
+from [Needles]..provider p
 where
 	p.name_id = 4386
 
@@ -24,14 +24,14 @@ where
 
 select
 	*
-from Skolrood_Needles..names n
+from [Needles]..names n
 where
 	n.names_id = 4386
 
 
 select
 	*
-from Skolrood_Needles..party p
+from [Needles]..party p
 
 
 select top 10
@@ -42,10 +42,10 @@ select top 10
 	p.expert,
 	p.specialty,
 	p.code
-from Skolrood_Needles..value v
-join Skolrood_Needles..names n
+from [Needles]..value v
+join [Needles]..names n
 	on n.names_id = v.provider
-join Skolrood_Needles..provider p
+join [Needles]..provider p
 	on p.name_id = n.names_id
 where
 	v.code = 'lwg'
@@ -225,10 +225,10 @@ insert into [dbo].[sma_TRN_Employment]
 		'needles'  as [source_db],
 		'value'	   as [source_ref]
 	--select *
-	from Skolrood_Needles..value_Indexed v
-	join Skolrood_Needles..names n
+	from [Needles]..value_Indexed v
+	join [Needles]..names n
 		on n.names_id = v.provider
-	--join Skolrood_Needles..provider p
+	--join [Needles]..provider p
 	--on p.name_id = n.names_id
 	join sma_trn_Cases cas
 		on cas.cassCaseNumber = CONVERT(VARCHAR, v.case_id)
@@ -312,7 +312,7 @@ go
 --		null			   as [ltwdDtModified],
 --		null			   as [ltwnLevelNo]
 --	-- employment record id: case > plaintiff > employment (value has caseid)
---	from Skolrood_Needles..value_indexed v
+--	from [Needles]..value_indexed v
 --	join sma_trn_Cases cas
 --		on cas.cassCaseNumber = CONVERT(VARCHAR, v.case_id)
 --	join sma_trn_plaintiff p
@@ -323,7 +323,7 @@ go
 --	where
 --		v.code = 'LWG'
 
----- FROM Skolrood_Needles..user_tab4_data ud
+---- FROM [Needles]..user_tab4_data ud
 ---- JOIN EmployerTemp et on et.employer = ud.employer and et.employer_address = ud.Employer_Address
 ---- JOIN IndvOrgContacts_Indexed ioc on ioc.SAGA = et.empID and ioc.[Name] = et.employer
 ---- JOIN [sma_TRN_Employment] e on  e.empnPlaintiffID = p.plnnPlaintiffID and empnEmployerID = ioc.CID
@@ -534,7 +534,7 @@ insert into [sma_TRN_LostWages]
 		'needles'		   as [source_db],
 		'value_indexed'	   as [source_ref]
 	-- employment record id: case > plaintiff > employment (value has caseid)
-	from Skolrood_Needles..value_indexed v
+	from [Needles]..value_indexed v
 	join sma_trn_Cases cas
 		on cas.cassCaseNumber = CONVERT(VARCHAR, v.case_id)
 	join sma_trn_plaintiff p
@@ -545,7 +545,7 @@ insert into [sma_TRN_LostWages]
 	where
 		v.code = 'LWG'
 
--- FROM Skolrood_Needles..user_tab4_data ud
+-- FROM [Needles]..user_tab4_data ud
 -- JOIN EmployerTemp et on et.employer = ud.employer and et.employer_address = ud.Employer_Address
 -- JOIN IndvOrgContacts_Indexed ioc on ioc.SAGA = et.empID and ioc.[Name] = et.employer
 -- JOIN [sma_TRN_Employment] e on  e.empnPlaintiffID = p.plnnPlaintiffID and empnEmployerID = ioc.CID
