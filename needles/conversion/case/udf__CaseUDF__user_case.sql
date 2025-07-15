@@ -29,15 +29,15 @@ go
 Use this block if you need to exclude specific columns from being pushed to CaseUDF
 */ ------------------------------------------------------------------------------
 ---- Insert columns to exclude
---insert into #ExcludedColumns
---	(
---		column_name
---	)
---	values
---	('a_field_to_exclude'),
---	('a_field_to_exclude'),
+insert into #ExcludedColumns
+	(
+		column_name
+	)
+	values
+	('casenum'),
+	('modified_timestamp')
 --	('a_field_to_exclude')
---go
+go
 
 -- Fetch all columns from [user_case_data] for unpivoting
 declare @sql NVARCHAR(MAX) = N'';
@@ -48,6 +48,7 @@ select
 from [Needles].INFORMATION_SCHEMA.COLUMNS
 where
 	table_name = 'user_case_data'
+	and TABLE_SCHEMA = 'dbo'
 	and column_name not in (
 		select
 			column_name
@@ -62,6 +63,7 @@ select
 from [Needles].INFORMATION_SCHEMA.COLUMNS
 where
 	table_name = 'user_case_data'
+	and TABLE_SCHEMA = 'dbo'
 	and column_name not in (
 		select
 			column_name
