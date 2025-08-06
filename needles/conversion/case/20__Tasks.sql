@@ -34,6 +34,9 @@ go
 /* ------------------------------------------------------------------------------
 Insert Tasks
 */ ------------------------------------------------------------------------------
+ALTER TABLE [sma_TRN_TaskNew] DISABLE TRIGGER ALL
+GO
+
 insert into [dbo].[sma_TRN_TaskNew]
 	(
 		[tskCaseID],
@@ -136,15 +139,7 @@ insert into [dbo].[sma_TRN_TaskNew]
 	from [Needles]..case_checklist cc
 	join sma_trn_Cases cas
 		on cas.cassCaseNumber = CONVERT(VARCHAR, cc.case_id)
---join [VanceLawFirm_Needles]..cases c
---	on c.casenum = cc.case_id
-
---left join sma_MST_Users U
---	on cc.staff_assigned = u.usrsLoginID
---left join sma_MST_Users UM
---	on cc.staff_modified = um.usrsLoginID
-
 go
 
---select * from sma_TRN_TaskNew
---delete from sma_TRN_TaskNew where source_ref = 'CaseChecklist'
+ALTER TABLE [sma_TRN_TaskNew] ENABLE TRIGGER ALL
+GO
