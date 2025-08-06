@@ -13,13 +13,13 @@ insert into [sma_MST_NoteTypes]
 	select distinct
 		topic as nttsdscrptn,
 		topic as nttsnotetext
-	from [VanceLawFirm_Needles].[dbo].[case_notes_Indexed]
+	from [Needles].[dbo].[case_notes_Indexed]
 	union all
 	-- from [value_notes].[topic]
 	select distinct
 		vn.topic,
 		vn.topic
-	from [VanceLawFirm_Needles]..value_notes vn
+	from [Needles]..value_notes vn
 	except
 	select
 		nttsDscrptn,
@@ -91,7 +91,7 @@ insert into [sma_TRN_Notes]
 		null							as [source_id],
 		'needles'						as [source_db],
 		'case_notes_indexed'			as [source_ref]
-	from [VanceLawFirm_Needles].[dbo].[case_notes_Indexed] n
+	from [Needles].[dbo].[case_notes_Indexed] n
 	join [sma_TRN_Cases] c
 		on c.cassCaseNumber = CONVERT(VARCHAR, n.case_num)
 	left join [sma_MST_Users] u
@@ -159,8 +159,8 @@ insert into [sma_TRN_Notes]
 		null		  as [source_id],
 		'needles'	  as [source_db],
 		'value_notes' as [source_ref]
-	from [VanceLawFirm_Needles].[dbo].[value_notes] n
-	join [VanceLawFirm_Needles].[dbo].[value_Indexed] v
+	from [Needles].[dbo].[value_notes] n
+	join [Needles].[dbo].[value_Indexed] v
 		on v.value_id = n.value_num
 	join [sma_TRN_Cases] c
 		on c.cassCaseNumber = CONVERT(VARCHAR, v.case_id)
@@ -184,8 +184,8 @@ insert into sma_TRN_NoteContacts
 		note.notnNoteID,
 		ioc.UNQCID
 	--select v.provider, ioc.*, n.note, note.*
-	from [VanceLawFirm_Needles]..[value_notes] n
-	join [VanceLawFirm_Needles]..value_Indexed v
+	from [Needles]..[value_notes] n
+	join [Needles]..value_Indexed v
 		on v.value_id = n.value_num
 	join sma_trn_Cases cas
 		on cas.cassCaseNumber = v.case_id

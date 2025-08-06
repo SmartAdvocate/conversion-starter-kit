@@ -411,6 +411,8 @@ go
 --ALTER TABLE [dbo].[CP_UserNotesStatus] CHECK CONSTRAINT [FK_CP_UserNotesStatus_sma_TRN_Notes]
 --GO
 
+TRUNCATE TABLE sma_TRN_History
+GO
 
 
 ALTER TABLE [dbo].[sma_TRN_TaskNew]  WITH CHECK ADD  CONSTRAINT [FK_sma_TRN_TaskNew_sma_TRN_Notes] FOREIGN KEY([tskCompletedNoteID])
